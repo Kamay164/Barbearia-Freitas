@@ -14,6 +14,9 @@ const CONFIG = {
 
   instagram: "https://instagram.com/",
 
+  // Usado nos dados estruturados do Google ("$" a "$$$$")
+  faixaPreco: "$$",
+
   endereco: {
     linha: "Rua Antônio de Albuquerque, 850 — Savassi",
     cidade: "Belo Horizonte/MG",

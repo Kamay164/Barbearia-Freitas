@@ -413,6 +413,13 @@
   border: 1px solid var(--cor-borda);
 }
 
+/* O iframe não mostra foco sozinho: o anel aparece na moldura do mapa
+   (a classe é colocada pelo JS, porque o mapa é de outro site) */
+.mapa:focus-within,
+.mapa--focado {
+  box-shadow: var(--sombra-foco);
+}
+
 .mapa iframe {
   width: 100%;
   height: 100%;

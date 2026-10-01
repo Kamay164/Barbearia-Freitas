@@ -1,44 +1,48 @@
 IMAGENS DO SITE — Barbearia Freitas
 ===================================
 
-Coloque nesta pasta os arquivos com EXATAMENTE estes nomes.
-Assim que o arquivo existir, a foto aparece no site. Enquanto não
-existir, o site mostra um fundo escuro reservado no lugar.
+O site usa fotos em WebP, em dois tamanhos cada (o celular baixa a menor).
+Você NÃO precisa criar esses arquivos à mão: coloque as fotos originais
+(JPG ou PNG) na pasta img/originais/ e rode, na pasta do projeto:
 
-Arquivo               Onde aparece                    Tamanho sugerido   Formato
---------------------  ------------------------------  -----------------  -------------
-logo.png              Logo no cabeçalho e no rodapé   altura 96 px+      PNG transparente
-hero.jpg              Banner do topo (atrás do título) 1920 x 1280 px    paisagem
-equipe-rafael.jpg     Foto do Rafael (Equipe)         600 x 750 px       retrato (4:5)
-equipe-diego.jpg      Foto do Diego (Equipe)          600 x 750 px       retrato (4:5)
-equipe-lucas.jpg      Foto do Lucas (Equipe)          600 x 750 px       retrato (4:5)
-galeria-1.jpg         Galeria: Degradê navalhado      800 x 800 px       quadrada (1:1)
-galeria-2.jpg         Galeria: Barba desenhada        800 x 800 px       quadrada (1:1)
-galeria-3.jpg         Galeria: Corte social           800 x 800 px       quadrada (1:1)
-galeria-4.jpg         Galeria: Platinado              800 x 800 px       quadrada (1:1)
-galeria-5.jpg         Galeria: Corte infantil         800 x 800 px       quadrada (1:1)
-galeria-6.jpg         Galeria: Pompadour              800 x 800 px       quadrada (1:1)
-favicon.ico, favicon-32.png, favicon-192.png, apple-touch-icon.png
-                      Ícone da aba / atalho do celular (gerados a partir do logo)
-logo-original.png     Cópia do logo original, sem ajuste de cor (backup; pode apagar)
+    pip install pillow        (só na primeira vez)
+    python otimizar-imagens.py
+
+Nomes das fotos originais que o script reconhece:
+
+Original (img/originais/)  Onde aparece                     Gerado em img/
+-------------------------  -------------------------------  -----------------------------
+hero.jpg                   Banner do topo (atrás do título)  hero-1920.webp, hero-1080.webp
+equipe-rafael.jpg          Foto do Rafael (Equipe)           equipe-rafael-800/400.webp
+equipe-diego.jpg           Foto do Diego (Equipe)            equipe-diego-800/400.webp
+equipe-lucas.jpg           Foto do Lucas (Equipe)            equipe-lucas-800/400.webp
+galeria-1.jpg ... 6.jpg    Galeria (6 fotos)                 galeria-N-800/400.webp
+
+Enquanto uma foto não existir, o site mostra um fundo escuro no lugar.
+
+Outros arquivos desta pasta
+- logo.png ........................ Logo do cabeçalho e do rodapé (PNG transparente, cores claras)
+- logo-original.png ............... Logo original, sem ajuste de cor (backup; pode apagar)
+- favicon.ico, favicon-32.png,
+  favicon-192.png, apple-touch-icon.png ... Ícone da aba e do atalho no celular
+- og-image.jpg .................... Imagem de prévia ao compartilhar o link (1200 x 630)
 
 Dicas
-- Logo: use PNG com fundo transparente e cores claras (o cabeçalho é
-  escuro). Ele aparece no lugar do círculo "BF". Se o logo já tiver o nome
-  "Barbearia Freitas" escrito, apague as linhas <span class="logo__nome">
-  no index.html (cabeçalho e rodapé) para o nome não aparecer duas vezes.
+- As fotos da equipe são recortadas em 4:5 (retrato) e as da galeria em 1:1
+  (quadrada). Se a pessoa ficar fora do centro, mude o valor em FOCO_X, no
+  começo do otimizar-imagens.py (0 = esquerda, 1 = direita), e rode de novo.
+  O recorte do banner (hero) pode ser ajustado no index.html, na tag img,
+  com style="--foco: 70% 50%".
 - Banner: o texto fica à esquerda, então prefira fotos com o assunto
-  principal à direita (ou ajuste o --foco, como explicado abaixo).
-- Fotos de outro tamanho também funcionam: o site recorta para caber.
-  Mesmo assim, a proporção indicada evita cortes ruins.
-- Se a pessoa ficar fora do centro no recorte, ajuste o foco no index.html
-  adicionando na tag img: style="--foco: 70% 50%"
-  O primeiro número move o recorte na horizontal (0% = esquerda,
-  100% = direita); o segundo, na vertical (0% = topo, 100% = base).
-- Para usar outro nome ou formato (ex.: .webp ou .png), troque o
-  "src" correspondente no index.html.
+  principal à direita.
+- Logo: se ele já tiver o nome "Barbearia Freitas" escrito, apague as linhas
+  <span class="logo__nome"> no index.html (cabeçalho e rodapé).
 - Se trocar a foto da galeria, ajuste também o texto "alt" no index.html
   (descrição da imagem para quem usa leitor de tela).
 - Fotos gratuitas: unsplash.com ou pexels.com. Lembre de atualizar os
   créditos no rodapé do index.html.
-- Mantenha cada foto com menos de ~300 KB (dá para comprimir em squoosh.app).
+- Os JPG originais pesados (equipe-*.jpg, hero.jpg) não são mais usados pelo
+  site: mova-os para img/originais/ para não irem para a hospedagem.
+- A prévia ao compartilhar (og-image.jpg) usa o endereço de exemplo
+  barbeariafreitas.example no index.html. Troque pelo endereço real quando
+  o site for publicado.

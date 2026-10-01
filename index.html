@@ -11,6 +11,33 @@
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <meta name="theme-color" content="#141210">
   <title>Barbearia Freitas | Corte e barba na Savassi, BH</title>
+  <meta name="description"
+    content="Corte, barba e barboterapia na Savassi, em Belo Horizonte. Preços fixos, hora marcada e agendamento rápido pelo WhatsApp.">
+
+  <!-- Compartilhamento (WhatsApp, Facebook, LinkedIn, X).
+       As URLs abaixo precisam ser absolutas: troque o endereço de exemplo
+       pelo endereço real do site quando ele for publicado. -->
+  <link rel="canonical" href="https://barbeariafreitas.example/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Barbearia Freitas">
+  <meta property="og:title" content="Barbearia Freitas | Corte e barba na Savassi, BH">
+  <meta property="og:description"
+    content="Corte, barba e barboterapia na Savassi. Preços fixos, hora marcada e agendamento rápido pelo WhatsApp.">
+  <meta property="og:url" content="https://barbeariafreitas.example/">
+  <meta property="og:image" content="https://barbeariafreitas.example/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Interior da Barbearia Freitas, com cadeiras e espelhos sob luz quente">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Barbearia Freitas | Corte e barba na Savassi, BH">
+  <meta name="twitter:description"
+    content="Corte, barba e barboterapia na Savassi. Preços fixos, hora marcada e agendamento rápido pelo WhatsApp.">
+  <meta name="twitter:image" content="https://barbeariafreitas.example/img/og-image.jpg">
+
+  <!-- O banner do topo é a primeira coisa vista: começa a baixar já -->
+  <link rel="preload" as="image" href="img/hero-1920.webp"
+    imagesrcset="img/hero-1080.webp 1080w, img/hero-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">
 
   <!-- Marca que o JS está ativo (usado pelas animações de "revelar") -->
   <script>document.documentElement.classList.add("js");</script>
@@ -42,7 +69,7 @@
       <a class="logo" href="#inicio" aria-label="Barbearia Freitas, voltar ao início">
         <!-- Logo: coloque o arquivo img/logo.png. Sem ele, aparece o monograma "BF".
              Se o seu logo já tiver o nome escrito, apague a linha do logo__nome abaixo. -->
-        <img class="logo__imagem" src="img/logo.png" alt="" height="48" decoding="async">
+        <img class="logo__imagem" src="img/logo.png" alt="" width="148" height="128" decoding="async">
         <span class="logo__monograma" aria-hidden="true">BF</span>
         <span class="logo__nome">Barbearia Freitas</span>
       </a>
@@ -76,10 +103,11 @@
     <!-- ===================== Hero ===================== -->
     <section class="hero" id="inicio" aria-labelledby="hero-titulo">
       <!-- BANNER do topo (atrás de "Corte em dia, papo em dia."):
-           coloque o arquivo img/hero.jpg. Sem ele, aparece um fundo escuro.
+           coloque a foto em img/hero-1920.webp e img/hero-1080.webp (veja otimizar-imagens.py). Sem ele, aparece um fundo escuro.
            Para mudar o ponto central do recorte, use style="--foco: X% Y%" na img. -->
       <div class="hero__fundo imagem-reserva" aria-hidden="true">
-        <img src="img/hero.jpg" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
+        <img src="img/hero-1920.webp" srcset="img/hero-1080.webp 1080w, img/hero-1920.webp 1920w" sizes="100vw" alt=""
+          width="1920" height="1097" fetchpriority="high" decoding="async">
       </div>
 
       <div class="container hero__conteudo">
@@ -281,8 +309,9 @@
           <li>
             <article class="barbeiro">
               <div class="imagem-reserva barbeiro__foto" style="--proporcao: 4 / 5">
-                <img src="img/equipe-rafael.jpg" alt="Rafael Freitas, fundador e barbeiro da Barbearia Freitas"
-                  width="600" height="750" loading="lazy" decoding="async">
+                <img src="img/equipe-rafael-800.webp" srcset="img/equipe-rafael-400.webp 400w, img/equipe-rafael-800.webp 800w"
+                  sizes="(min-width: 1024px) 352px, (min-width: 768px) 30vw, 92vw" alt="Rafael Freitas, fundador e barbeiro da Barbearia Freitas"
+                  width="800" height="1000" loading="lazy" decoding="async">
               </div>
               <h3 class="barbeiro__nome">Rafael Freitas</h3>
               <p class="barbeiro__funcao texto-suave">Fundador e barbeiro · Cortes clássicos e navalha</p>
@@ -291,8 +320,9 @@
           <li>
             <article class="barbeiro">
               <div class="imagem-reserva barbeiro__foto" style="--proporcao: 4 / 5">
-                <img src="img/equipe-diego.jpg" style="--foco: 74% 50%" alt="Diego Moura, barbeiro" width="600"
-                  height="750" loading="lazy" decoding="async">
+                <img src="img/equipe-diego-800.webp" srcset="img/equipe-diego-400.webp 400w, img/equipe-diego-800.webp 800w"
+                  sizes="(min-width: 1024px) 352px, (min-width: 768px) 30vw, 92vw" alt="Diego Moura, barbeiro" width="800"
+                  height="1000" loading="lazy" decoding="async">
               </div>
               <h3 class="barbeiro__nome">Diego Moura</h3>
               <p class="barbeiro__funcao texto-suave">Barbeiro · Degradês e desenhos</p>
@@ -301,7 +331,8 @@
           <li>
             <article class="barbeiro">
               <div class="imagem-reserva barbeiro__foto" style="--proporcao: 4 / 5">
-                <img src="img/equipe-lucas.jpg" alt="Lucas Andrade, barbeiro" width="600" height="750" loading="lazy"
+                <img src="img/equipe-lucas-800.webp" srcset="img/equipe-lucas-400.webp 400w, img/equipe-lucas-800.webp 800w"
+                  sizes="(min-width: 1024px) 352px, (min-width: 768px) 30vw, 92vw" alt="Lucas Andrade, barbeiro" width="800" height="1000" loading="lazy"
                   decoding="async">
               </div>
               <h3 class="barbeiro__nome">Lucas Andrade</h3>
@@ -324,7 +355,8 @@
           <li>
             <figure class="galeria__item">
               <div class="imagem-reserva" style="--proporcao: 1 / 1">
-                <img src="img/galeria-1.jpg" alt="Cliente com corte degradê navalhado" width="800" height="800"
+                <img src="img/galeria-1-800.webp" srcset="img/galeria-1-400.webp 400w, img/galeria-1-800.webp 800w"
+                  sizes="(min-width: 768px) 352px, 46vw" alt="Cliente com corte degradê navalhado" width="800" height="800"
                   loading="lazy" decoding="async">
               </div>
               <figcaption class="texto-pequeno texto-suave">Degradê navalhado</figcaption>
@@ -333,7 +365,8 @@
           <li>
             <figure class="galeria__item">
               <div class="imagem-reserva" style="--proporcao: 1 / 1">
-                <img src="img/galeria-2.jpg" alt="Barba desenhada com navalha" width="800" height="800" loading="lazy"
+                <img src="img/galeria-2-800.webp" srcset="img/galeria-2-400.webp 400w, img/galeria-2-800.webp 800w"
+                  sizes="(min-width: 768px) 352px, 46vw" alt="Cliente na cadeira com toalha quente no rosto e barba desenhada" width="800" height="800" loading="lazy"
                   decoding="async">
               </div>
               <figcaption class="texto-pequeno texto-suave">Barba desenhada</figcaption>
@@ -342,7 +375,8 @@
           <li>
             <figure class="galeria__item">
               <div class="imagem-reserva" style="--proporcao: 1 / 1">
-                <img src="img/galeria-3.jpg" alt="Corte social clássico penteado de lado" width="800" height="800"
+                <img src="img/galeria-3-800.webp" srcset="img/galeria-3-400.webp 400w, img/galeria-3-800.webp 800w"
+                  sizes="(min-width: 768px) 352px, 46vw" alt="Corte social clássico penteado de lado" width="800" height="800"
                   loading="lazy" decoding="async">
               </div>
               <figcaption class="texto-pequeno texto-suave">Corte social</figcaption>
@@ -351,7 +385,8 @@
           <li>
             <figure class="galeria__item">
               <div class="imagem-reserva" style="--proporcao: 1 / 1">
-                <img src="img/galeria-4.jpg" alt="Cabelo platinado com tonalização" width="800" height="800"
+                <img src="img/galeria-4-800.webp" srcset="img/galeria-4-400.webp 400w, img/galeria-4-800.webp 800w"
+                  sizes="(min-width: 768px) 352px, 46vw" alt="Cabelo platinado com tonalização" width="800" height="800"
                   loading="lazy" decoding="async">
               </div>
               <figcaption class="texto-pequeno texto-suave">Platinado</figcaption>
@@ -360,7 +395,8 @@
           <li>
             <figure class="galeria__item">
               <div class="imagem-reserva" style="--proporcao: 1 / 1">
-                <img src="img/galeria-5.jpg" alt="Criança com corte infantil finalizado" width="800" height="800"
+                <img src="img/galeria-5-800.webp" srcset="img/galeria-5-400.webp 400w, img/galeria-5-800.webp 800w"
+                  sizes="(min-width: 768px) 352px, 46vw" alt="Criança com corte infantil finalizado" width="800" height="800"
                   loading="lazy" decoding="async">
               </div>
               <figcaption class="texto-pequeno texto-suave">Corte infantil</figcaption>
@@ -369,7 +405,8 @@
           <li>
             <figure class="galeria__item">
               <div class="imagem-reserva" style="--proporcao: 1 / 1">
-                <img src="img/galeria-6.jpg" alt="Corte pompadour com topete volumoso" width="800" height="800"
+                <img src="img/galeria-6-800.webp" srcset="img/galeria-6-400.webp 400w, img/galeria-6-800.webp 800w"
+                  sizes="(min-width: 768px) 352px, 46vw" alt="Corte pompadour com topete volumoso" width="800" height="800"
                   loading="lazy" decoding="async">
               </div>
               <figcaption class="texto-pequeno texto-suave">Pompadour</figcaption>
@@ -566,7 +603,7 @@
     <div class="container rodape__interno">
       <div class="rodape__marca">
         <a class="logo" href="#inicio" aria-label="Barbearia Freitas, voltar ao início">
-          <img class="logo__imagem" src="img/logo.png" alt="" height="48" decoding="async">
+          <img class="logo__imagem" src="img/logo.png" alt="" width="148" height="128" decoding="async">
           <span class="logo__monograma" aria-hidden="true">BF</span>
           <span class="logo__nome">Barbearia Freitas</span>
         </a>

@@ -18,7 +18,9 @@ Projeto fictício de portfólio: landing page de uma barbearia. O visitante enco
 index.html        página única
 css/              estilos (base.css, depois um arquivo por responsabilidade)
 js/               scripts (config.js com os dados do negócio, main.js)
-img/              fotos do site e ícone da aba (nomes esperados em img/LEIA-ME.txt)
+img/              fotos do site em WebP, logo e ícones (nomes em img/LEIA-ME.txt)
+img/originais/    fotos originais em alta resolução (fora do Git; fonte do script abaixo)
+otimizar-imagens.py  gera os .webp de img/ a partir de img/originais/
 assets/           outros recursos (fontes, ícones), se necessário
 PLAN.md           plano de conteúdo e direção visual (etapa 2)
 ```

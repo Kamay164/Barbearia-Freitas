@@ -280,6 +280,25 @@ function iniciarRevelar() {
 }
 
 /* --------------------------------------------------------------------------
+   Foco no mapa
+   Quando o foco entra no mapa do Google (outro site), a página não recebe
+   :focus no iframe. Detecta a saída do foco da janela e marca a moldura,
+   para quem navega pelo teclado ver onde está.
+   -------------------------------------------------------------------------- */
+
+function iniciarFocoMapa() {
+  const iframe = document.querySelector("[data-mapa]");
+  const moldura = iframe?.parentElement;
+  if (!moldura) return;
+
+  window.addEventListener("blur", () => {
+    // O activeElement só é atualizado depois do evento
+    setTimeout(() => moldura.classList.toggle("mapa--focado", document.activeElement === iframe));
+  });
+  window.addEventListener("focus", () => moldura.classList.remove("mapa--focado"));
+}
+
+/* --------------------------------------------------------------------------
    Imagens ausentes
    Fotos que ainda não estão na pasta img/ são escondidas: aparece o fundo
    reservado, e não o ícone de imagem quebrada.
@@ -301,10 +320,138 @@ function esconderImagensAusentes() {
 }
 
 /* --------------------------------------------------------------------------
+   Dados estruturados (JSON-LD) para o Google
+   Montados a partir do config.js, para nome, telefone, endereço e horários
+   existirem em um lugar só.
+   -------------------------------------------------------------------------- */
+
+function injetarDadosEstruturados() {
+  const dias = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  // Dias com o mesmo horário viram uma única entrada (ex.: terça a sexta)
+  const grupos = {};
+  Object.entries(CONFIG.horarios).forEach(([dia, horario]) => {
+    if (!horario) return;
+    const chave = horario.join("-");
+    (grupos[chave] ||= { opens: horario[0], closes: horario[1], dias: [] }).dias.push(dias[dia]);
+  });
+
+  const [cidade, estado] = CONFIG.endereco.cidade.split("/");
+  const url = document.querySelector('link[rel="canonical"]')?.href;
+  const imagem = document.querySelector('meta[property="og:image"]')?.content;
+
+  const dados = {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    name: CONFIG.nome,
+    url,
+    image: imagem,
+    telephone: `+${CONFIG.whatsapp}`,
+    priceRange: CONFIG.faixaPreco,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: CONFIG.endereco.linha,
+      addressLocality: cidade,
+      addressRegion: estado,
+      postalCode: CONFIG.endereco.cep,
+      addressCountry: "BR",
+    },
+    openingHoursSpecification: Object.values(grupos).map((g) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: g.dias,
+      opens: g.opens,
+      closes: g.closes,
+    })),
+    sameAs: [CONFIG.instagram],
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(dados);
+  document.head.append(script);
+}
+
+/* --------------------------------------------------------------------------
+   Verificação de consistência (só no computador de quem edita o site)
+   Preços, horários, telefone e endereço também estão escritos no HTML, para o
+   Google ler e para o site funcionar sem JS. Se alguém mudar o config.js e
+   esquecer o HTML (ou o contrário), o console do navegador avisa o que ficou
+   diferente. Precisa rodar ANTES das funções que preenchem a página.
+   -------------------------------------------------------------------------- */
+
+function verificarConsistencia() {
+  const local = location.protocol === "file:" || ["localhost", "127.0.0.1", ""].includes(location.hostname);
+  if (!local) return;
+
+  const avisos = [];
+  const texto = (el) => el?.textContent.replace(/\s+/g, " ").trim() ?? "";
+
+  // Serviços: um card para cada item do config, com o mesmo preço e duração
+  const botoes = [...document.querySelectorAll(".servico__agendar[data-servico]")];
+  const nomesNoHtml = botoes.map((b) => b.dataset.servico);
+
+  CONFIG.servicos.forEach((s) => {
+    const card = botoes.find((b) => b.dataset.servico === s.nome)?.closest(".servico");
+    if (!card) {
+      avisos.push(`Serviço "${s.nome}" está no config.js, mas não tem card no index.html.`);
+      return;
+    }
+    const preco = card.querySelector(".servico__preco");
+    if (Number(preco?.value) !== s.preco || !texto(preco).includes(formatarPreco(s.preco))) {
+      avisos.push(`Preço de "${s.nome}": HTML diz "${texto(preco)}", config.js diz ${formatarPreco(s.preco)}.`);
+    }
+    const duracao = texto(card.querySelector(".servico__duracao"));
+    if (duracao !== `${s.duracao} min`) {
+      avisos.push(`Duração de "${s.nome}": HTML diz "${duracao}", config.js diz ${s.duracao} min.`);
+    }
+  });
+
+  nomesNoHtml
+    .filter((nome) => !CONFIG.servicos.some((s) => s.nome === nome))
+    .forEach((nome) => avisos.push(`Card "${nome}" está no index.html, mas não existe no config.js.`));
+
+  // Horários
+  document.querySelectorAll("[data-horarios] tr[data-dia]").forEach((linha) => {
+    const horario = CONFIG.horarios[linha.dataset.dia];
+    const esperado = horario ? `${formatarHora(horario[0])}–${formatarHora(horario[1])}` : "Fechado";
+    const atual = texto(linha.querySelector("td"));
+    if (atual !== esperado) {
+      avisos.push(`Horário de ${texto(linha.querySelector("th"))}: HTML diz "${atual}", config.js diz "${esperado}".`);
+    }
+  });
+
+  // Telefone, WhatsApp e endereço
+  document.querySelectorAll("[data-telefone]").forEach((el) => {
+    if (texto(el) !== CONFIG.telefoneExibicao) {
+      avisos.push(`Telefone: HTML diz "${texto(el)}", config.js diz "${CONFIG.telefoneExibicao}".`);
+    }
+  });
+
+  document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+    if (!link.getAttribute("href").includes(`wa.me/${CONFIG.whatsapp}`)) {
+      avisos.push(`Link do WhatsApp com número diferente do config.js: ${link.getAttribute("href").slice(0, 40)}…`);
+    }
+  });
+
+  const endereco = texto(document.querySelector(".contato__bloco address"));
+  [CONFIG.endereco.linha, CONFIG.endereco.cidade, CONFIG.endereco.cep].forEach((parte) => {
+    if (!endereco.includes(parte)) avisos.push(`Endereço da seção Contato não tem "${parte}" (do config.js).`);
+  });
+
+  if (avisos.length) {
+    console.warn(`[Barbearia Freitas] ${avisos.length} diferença(s) entre o index.html e o config.js:\n- ${avisos.join("\n- ")}`);
+  } else {
+    console.info("[Barbearia Freitas] index.html e config.js estão consistentes.");
+  }
+}
+
+/* --------------------------------------------------------------------------
    Início
    -------------------------------------------------------------------------- */
 
+verificarConsistencia();
 esconderImagensAusentes();
+injetarDadosEstruturados();
 aplicarLinks();
 aplicarServicos();
 aplicarHorarios();
@@ -312,6 +459,7 @@ atualizarStatus();
 iniciarMenu();
 iniciarMenuAtivo();
 iniciarRevelar();
+iniciarFocoMapa();
 
 // Mantém o status e o dia destacado corretos com a página aberta
 setInterval(() => {

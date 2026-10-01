@@ -11,5 +11,8 @@ desktop.ini
 node_modules/
 *.log
 
+# Fotos originais em alta resolução (o site usa os .webp gerados a partir delas)
+img/originais/
+
 # Arquivos locais do Claude Code
 .claude/settings.local.json
