@@ -8,7 +8,7 @@ Todos os dados são **fictícios** (projeto de portfólio). O rodapé do site de
 ## 1. Marca
 
 - **Nome:** Barbearia Freitas
-- **Slogan:** "Tradição no corte, cuidado no detalhe."
+- **Slogan:** "Corte em dia, papo em dia."
 - **Tom de voz:** algo amigavel, aonde os amigos vão pra cortar cabelo e conversar
 - **Posicionamento:** barbearia de bairro com acabamento premium. Clássica no ofício, moderna no atendimento.
 - **Fundação (fictícia):** 2014, pelo barbeiro Rafael Freitas.
@@ -91,8 +91,8 @@ Ordem das seções (âncoras entre parênteses):
 ### Hero
 
 - **Selo pequeno:** "Desde 2014 · Belo Horizonte, MG"
-- **h1:** "Tradição no corte, cuidado no detalhe."
-- **Subtítulo:** "Corte, barba e acabamento feitos com calma, por barbeiros que conhecem o seu estilo. Agende pelo WhatsApp em menos de um minuto."
+- **h1:** "Corte em dia, papo em dia."
+- **Subtítulo:** "A barbearia da Savassi onde você chega cliente e sai amigo. Corte e barba sem pressa, café passado na hora e aquela resenha boa. Agende pelo WhatsApp em menos de um minuto."
 - **Botão principal:** "Agendar pelo WhatsApp"
 - **Botão secundário:** "Ver serviços e preços" (leva a `#servicos`)
 - **Status ao vivo:** "Aberto agora · fecha às 20h" ou "Fechado · abre terça às 9h"
@@ -100,7 +100,7 @@ Ordem das seções (âncoras entre parênteses):
 ### Serviços e preços
 
 - **h2:** "Serviços e preços"
-- **Introdução:** "Preços fixos, sem surpresa. Todos os serviços incluem lavagem e finalização."
+- **Introdução:** "Preço justo e sem surpresa. Todo serviço inclui lavagem e finalização."
 - **Botão em cada card:** "Agendar este serviço" (abre o WhatsApp com o nome do serviço na mensagem).
 
 | Serviço | Descrição curta | Duração | Preço |
@@ -118,17 +118,18 @@ Ordem das seções (âncoras entre parênteses):
 
 ### Sobre e diferenciais
 
-- **h2:** "Barbearia de bairro, padrão de alto nível"
-- **Texto:** "A Freitas nasceu em 2014, quando o Rafael transformou uma cadeira alugada num espaço próprio na Savassi. A ideia continua a mesma: atendimento sem pressa, conversa boa e um corte que dura até a próxima visita."
+- **h2:** "Mais que barbearia, ponto de encontro"
+- **Texto:** "A Freitas nasceu em 2014, quando o Rafael trocou uma cadeira alugada por um espaço próprio na Savassi e levou junto os clientes, que viraram amigos. Até hoje é assim: atendimento sem pressa, jogo na TV, conversa boa e um corte que segura até a próxima visita."
 - **4 diferenciais** (ícone e frase curta):
   - Hora marcada, sem fila
   - Produtos profissionais
   - Café e cerveja gelada por conta da casa
-  - Wi-Fi e ar-condicionado
+  - Jogo na TV, Wi-Fi e ar-condicionado
 
 ### Equipe
 
-- **h2:** "Quem cuida de você"
+- **h2:** "A turma da cadeira"
+- **Introdução:** "Três barbeiros, três estilos e o mesmo cuidado. Pode chegar pedindo pelo nome."
 
 | Nome | Função | Especialidade |
 |---|---|---|
@@ -147,7 +148,7 @@ Ordem das seções (âncoras entre parênteses):
 
 ### Depoimentos
 
-- **h2:** "O que dizem os clientes"
+- **h2:** "Quem senta na cadeira, volta"
 - **3 depoimentos fictícios**, com primeiro nome e inicial e 5 estrelas:
   - "Corto aqui há 6 anos e nunca saí insatisfeito. O Rafael sabe exatamente o que eu quero." — Marcelo T.
   - "Levei meu filho de 5 anos e ele saiu querendo voltar. Paciência nota 10." — Juliana R.
@@ -179,7 +180,7 @@ Ordem das seções (âncoras entre parênteses):
 
 ### Chamada final
 
-- **Texto:** "Bora marcar o próximo corte?"
+- **Texto:** "Bora marcar o próximo corte?" / "O café já tá passando."
 - **Botão:** "Agendar pelo WhatsApp"
 
 ### Rodapé

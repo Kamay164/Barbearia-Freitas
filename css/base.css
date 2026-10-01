@@ -122,6 +122,13 @@ img {
   height: auto;
 }
 
+/* Ícones SVG inline: tamanho padrão (componentes podem sobrescrever) */
+svg[aria-hidden="true"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
 input,
 button,
 textarea,
