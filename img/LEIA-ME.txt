@@ -1,0 +1,35 @@
+IMAGENS DO SITE — Barbearia Freitas
+===================================
+
+Coloque nesta pasta os arquivos com EXATAMENTE estes nomes.
+Assim que o arquivo existir, a foto aparece no site. Enquanto não
+existir, o site mostra um fundo escuro reservado no lugar.
+
+Arquivo               Onde aparece                    Tamanho sugerido   Formato
+--------------------  ------------------------------  -----------------  -------------
+hero.jpg              Fundo do topo da página         1920 x 1280 px     paisagem
+equipe-rafael.jpg     Foto do Rafael (Equipe)         600 x 750 px       retrato (4:5)
+equipe-diego.jpg      Foto do Diego (Equipe)          600 x 750 px       retrato (4:5)
+equipe-lucas.jpg      Foto do Lucas (Equipe)          600 x 750 px       retrato (4:5)
+galeria-1.jpg         Galeria: Degradê navalhado      800 x 800 px       quadrada (1:1)
+galeria-2.jpg         Galeria: Barba desenhada        800 x 800 px       quadrada (1:1)
+galeria-3.jpg         Galeria: Corte social           800 x 800 px       quadrada (1:1)
+galeria-4.jpg         Galeria: Platinado              800 x 800 px       quadrada (1:1)
+galeria-5.jpg         Galeria: Corte infantil         800 x 800 px       quadrada (1:1)
+galeria-6.jpg         Galeria: Pompadour              800 x 800 px       quadrada (1:1)
+scissors.png          Ícone da aba do navegador       32 x 32 ou 64 x 64 quadrada
+
+Dicas
+- Fotos de outro tamanho também funcionam: o site recorta para caber.
+  Mesmo assim, a proporção indicada evita cortes ruins.
+- Se a pessoa ficar fora do centro no recorte, ajuste o foco no index.html
+  adicionando na tag img: style="--foco: 70% 50%"
+  O primeiro número move o recorte na horizontal (0% = esquerda,
+  100% = direita); o segundo, na vertical (0% = topo, 100% = base).
+- Para usar outro nome ou formato (ex.: .webp ou .png), troque o
+  "src" correspondente no index.html.
+- Se trocar a foto da galeria, ajuste também o texto "alt" no index.html
+  (descrição da imagem para quem usa leitor de tela).
+- Fotos gratuitas: unsplash.com ou pexels.com. Lembre de atualizar os
+  créditos no rodapé do index.html.
+- Mantenha cada foto com menos de ~300 KB (dá para comprimir em squoosh.app).

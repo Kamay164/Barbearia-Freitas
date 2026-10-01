@@ -18,7 +18,8 @@ Projeto fictício de portfólio: landing page de uma barbearia. O visitante enco
 index.html        página única
 css/              estilos (base.css, depois um arquivo por responsabilidade)
 js/               scripts (config.js com os dados do negócio, main.js)
-assets/           imagens (preferir WebP), ícones, fontes
+img/              fotos do site e ícone da aba (nomes esperados em img/LEIA-ME.txt)
+assets/           outros recursos (fontes, ícones), se necessário
 PLAN.md           plano de conteúdo e direção visual (etapa 2)
 ```
 

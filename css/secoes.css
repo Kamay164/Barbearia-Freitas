@@ -17,8 +17,8 @@
   overflow: hidden;
 }
 
-/* Fundo: foto na etapa 8. Até lá, gradiente quente com listras sutis
-   (referência ao poste de barbearia). */
+/* Fundo: foto em img/hero.jpg. Sem a foto, aparece um gradiente quente
+   com listras sutis (referência ao poste de barbearia). */
 .hero__fundo.imagem-reserva {
   position: absolute;
   inset: 0;
@@ -36,7 +36,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(20 18 16 / 0.2) 0%, rgb(20 18 16 / 0.65) 55%, var(--cor-fundo) 100%);
+  background:
+    linear-gradient(90deg, rgb(20 18 16 / 0.75) 0%, rgb(20 18 16 / 0.15) 65%),
+    linear-gradient(180deg, rgb(20 18 16 / 0.2) 0%, rgb(20 18 16 / 0.65) 55%, var(--cor-fundo) 100%);
 }
 
 .hero__conteudo {
