@@ -122,6 +122,11 @@ img {
   height: auto;
 }
 
+/* Garante que [hidden] sempre esconda, mesmo com display definido no CSS */
+[hidden] {
+  display: none !important;
+}
+
 /* Ícones SVG inline: tamanho padrão (componentes podem sobrescrever) */
 svg[aria-hidden="true"] {
   width: 1.5rem;

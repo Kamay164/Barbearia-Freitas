@@ -1,0 +1,288 @@
+/* ==========================================================================
+   Barbearia Freitas — layout.css
+   Cabeçalho fixo, menu, rodapé e botão flutuante do WhatsApp.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Cabeçalho
+   -------------------------------------------------------------------------- */
+.cabecalho {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: var(--altura-cabecalho);
+  background-color: rgb(20 18 16 / 0.88);
+  border-bottom: 1px solid var(--cor-borda);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.cabecalho__interno {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+  height: 100%;
+}
+
+/* Logo (também usado no rodapé) */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-right: auto;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--cor-texto);
+}
+
+.logo__monograma {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 50%;
+  color: var(--cor-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.logo__nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* No celular o agendamento fica com o botão flutuante */
+.cabecalho__agendar {
+  display: none;
+  min-height: 2.5rem;
+  padding: var(--espaco-2) var(--espaco-4);
+  font-size: 0.9375rem;
+}
+
+/* Botão do menu (só aparece com JS ativo) */
+.menu-botao {
+  display: none;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: calc(var(--espaco-2) * -1);
+  border-radius: var(--raio);
+  color: var(--cor-texto);
+}
+
+.menu-botao:hover {
+  color: var(--cor-destaque);
+}
+
+.js .menu-botao {
+  display: grid;
+}
+
+/* Menu no celular: painel abaixo do cabeçalho */
+.menu {
+  display: none;
+}
+
+.js .menu-botao[aria-expanded="true"] + .menu {
+  display: block;
+  position: absolute;
+  inset: 100% 0 auto;
+  padding: var(--espaco-2) var(--margem-lateral) var(--espaco-5);
+  background-color: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.menu__link {
+  display: block;
+  padding: var(--espaco-3) 0;
+  color: var(--cor-texto);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu__link:hover {
+  color: var(--cor-destaque);
+}
+
+.menu__lista li + li .menu__link {
+  border-top: 1px solid var(--cor-borda);
+}
+
+@media (min-width: 768px) {
+  .cabecalho__agendar {
+    display: inline-flex;
+    order: 1;
+  }
+
+  .menu-botao {
+    order: 2;
+  }
+}
+
+/* Desktop: menu em linha, sem botão */
+@media (min-width: 1024px) {
+  .js .menu-botao {
+    display: none;
+  }
+
+  .menu,
+  .js .menu-botao[aria-expanded="true"] + .menu {
+    display: block;
+    position: static;
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+
+  .menu__lista {
+    display: flex;
+    gap: var(--espaco-6);
+  }
+
+  .menu__lista li + li .menu__link {
+    border-top: 0;
+  }
+
+  .menu__link {
+    position: relative;
+    padding: var(--espaco-2) 0;
+    font-size: 0.9375rem;
+    color: var(--cor-texto-suave);
+    transition: color var(--transicao);
+  }
+
+  .menu__link::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    background-color: var(--cor-destaque);
+    transform: scaleX(0);
+    transition: transform var(--transicao);
+  }
+
+  .menu__link:hover {
+    color: var(--cor-texto);
+  }
+
+  .menu__link:hover::after,
+  .menu__link[aria-current="true"]::after {
+    transform: scaleX(1);
+  }
+
+  .cabecalho__interno {
+    gap: var(--espaco-7);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Rodapé
+   -------------------------------------------------------------------------- */
+.rodape {
+  /* espaço extra embaixo para o botão flutuante não cobrir o texto */
+  padding: var(--espaco-7) 0 calc(var(--espaco-7) + 4rem);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.rodape__interno {
+  display: grid;
+  gap: var(--espaco-6);
+}
+
+.rodape__marca {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.rodape__redes {
+  display: flex;
+  gap: var(--espaco-3);
+}
+
+.rodape__redes a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  color: var(--cor-texto-suave);
+  transition:
+    color var(--transicao),
+    border-color var(--transicao);
+}
+
+.rodape__redes a:hover {
+  color: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+}
+
+.rodape__redes svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.rodape__legal {
+  display: grid;
+  gap: var(--espaco-1);
+  padding-top: var(--espaco-5);
+  border-top: 1px solid var(--cor-borda);
+}
+
+@media (min-width: 768px) {
+  .rodape__interno {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .rodape__legal {
+    grid-column: 1 / -1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Botão flutuante do WhatsApp
+   -------------------------------------------------------------------------- */
+.whatsapp-flutuante {
+  position: fixed;
+  right: var(--espaco-4);
+  bottom: var(--espaco-4);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: var(--cor-whatsapp);
+  color: var(--cor-whatsapp-icone);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.45);
+  transition: transform var(--transicao);
+}
+
+.whatsapp-flutuante:hover {
+  color: var(--cor-whatsapp-icone);
+  transform: scale(1.06);
+}
+
+.whatsapp-flutuante:focus-visible {
+  outline: none;
+  box-shadow: var(--sombra-foco);
+}
+
+.whatsapp-flutuante svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+@media (min-width: 1024px) {
+  .whatsapp-flutuante {
+    right: var(--espaco-6);
+    bottom: var(--espaco-6);
+  }
+}

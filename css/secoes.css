@@ -1,0 +1,544 @@
+/* ==========================================================================
+   Barbearia Freitas — secoes.css
+   Estilos de cada seção da página, na ordem em que aparecem.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  --fundo-secao: var(--cor-fundo);
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: min(100svh, 52rem);
+  padding: calc(var(--altura-cabecalho) + var(--espaco-8)) 0 var(--espaco-8);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Fundo: foto na etapa 8. Até lá, gradiente quente com listras sutis
+   (referência ao poste de barbearia). */
+.hero__fundo.imagem-reserva {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  aspect-ratio: auto;
+  border-radius: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 15%, rgb(201 162 95 / 0.2), transparent 70%),
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.025) 0 2px, transparent 2px 18px),
+    linear-gradient(180deg, #221e1a 0%, var(--cor-fundo) 100%);
+}
+
+/* Escurece a base para garantir a leitura do texto sobre a foto */
+.hero__fundo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(20 18 16 / 0.2) 0%, rgb(20 18 16 / 0.65) 55%, var(--cor-fundo) 100%);
+}
+
+.hero__conteudo {
+  display: grid;
+  justify-items: start;
+  gap: var(--espaco-5);
+}
+
+.hero h1 {
+  max-width: 14ch;
+}
+
+.hero .texto-lead {
+  color: var(--cor-texto);
+  opacity: 0.85;
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-2);
+}
+
+/* Status "Aberto agora" (preenchido pelo JS) */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: var(--espaco-1) var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pilula);
+  background-color: rgb(20 18 16 / 0.6);
+  color: var(--cor-texto-suave);
+  font-size: var(--tamanho-pequeno);
+  font-weight: 600;
+}
+
+.status::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--cor-texto-suave);
+}
+
+.status[data-estado="aberto"] {
+  color: var(--cor-texto);
+}
+
+.status[data-estado="aberto"]::before {
+  background-color: #4ade80;
+  box-shadow: 0 0 0 3px rgb(74 222 128 / 0.2);
+}
+
+@media (min-width: 768px) {
+  .hero__acoes {
+    gap: var(--espaco-4);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Serviços e preços — estilo "tabela de preços de barbearia"
+   -------------------------------------------------------------------------- */
+.servicos {
+  display: grid;
+  column-gap: var(--espaco-8);
+}
+
+.servico {
+  display: grid;
+  grid-template-columns: auto minmax(1.5rem, 1fr) auto;
+  grid-template-areas:
+    "etiqueta etiqueta etiqueta"
+    "nome     lider    preco"
+    "desc     desc     desc"
+    "duracao  acao     acao";
+  align-items: baseline;
+  column-gap: var(--espaco-3);
+  padding-block: var(--espaco-5);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Linha pontilhada entre o nome e o preço */
+.servico::after {
+  content: "";
+  grid-area: lider;
+  align-self: end;
+  margin-bottom: 0.4em;
+  border-bottom: 1px dotted rgb(201 162 95 / 0.45);
+}
+
+.servico .etiqueta {
+  grid-area: etiqueta;
+  justify-self: start;
+  margin-bottom: var(--espaco-3);
+}
+
+.servico__nome {
+  grid-area: nome;
+  font-size: 1.375rem;
+}
+
+/* O parágrafo some do layout e os filhos viram itens da grade */
+.servico__info {
+  display: contents;
+}
+
+.servico__preco {
+  grid-area: preco;
+  font-family: var(--fonte-titulo);
+  font-size: 1.375rem;
+  justify-self: end;
+  color: var(--cor-destaque);
+  white-space: nowrap;
+}
+
+.servico__descricao {
+  grid-area: desc;
+  margin-top: var(--espaco-2);
+  max-width: 34rem;
+}
+
+.servico__duracao {
+  grid-area: duracao;
+  align-self: center;
+  color: var(--cor-texto-suave);
+  font-size: var(--tamanho-pequeno);
+}
+
+.servico__agendar {
+  grid-area: acao;
+  align-self: center;
+  justify-self: end;
+  min-height: 2.5rem;
+  margin-top: var(--espaco-3);
+  padding: var(--espaco-2) var(--espaco-4);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* Serviço em destaque */
+.servico--destaque {
+  position: relative;
+  isolation: isolate;
+  padding-inline: var(--espaco-4);
+  border-bottom-color: transparent;
+}
+
+.servico--destaque::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1px solid rgb(201 162 95 / 0.35);
+  border-radius: var(--raio);
+  background-color: rgb(201 162 95 / 0.05);
+}
+
+
+@media (min-width: 768px) {
+  .servicos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sobre e diferenciais
+   -------------------------------------------------------------------------- */
+.sobre {
+  display: grid;
+  gap: var(--espaco-7);
+}
+
+.sobre__texto .cabecalho-secao {
+  margin-bottom: var(--espaco-5);
+}
+
+.sobre__texto p + p {
+  margin-top: var(--espaco-4);
+}
+
+.sobre__texto p {
+  color: var(--cor-texto-suave);
+  font-size: var(--tamanho-lead);
+  max-width: 34rem;
+}
+
+.diferenciais {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.diferencial {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+  padding: var(--espaco-4) var(--espaco-5);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-fundo);
+  font-weight: 600;
+}
+
+.diferencial svg {
+  color: var(--cor-destaque);
+}
+
+@media (min-width: 768px) {
+  .diferenciais {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .diferencial {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--espaco-3);
+    padding: var(--espaco-5);
+  }
+
+  .diferencial svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sobre {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--espaco-8);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Imagens reservadas (até as fotos chegarem na etapa 8)
+   -------------------------------------------------------------------------- */
+.barbeiro__foto,
+.galeria .imagem-reserva {
+  background:
+    repeating-linear-gradient(135deg, rgb(255 255 255 / 0.02) 0 2px, transparent 2px 16px),
+    linear-gradient(160deg, #2e2a25 0%, #1a1714 100%);
+}
+
+/* --------------------------------------------------------------------------
+   Equipe
+   -------------------------------------------------------------------------- */
+.equipe {
+  gap: var(--espaco-7);
+}
+
+.barbeiro__foto {
+  margin-bottom: var(--espaco-4);
+}
+
+.barbeiro__nome {
+  font-size: 1.5rem;
+}
+
+.barbeiro__funcao {
+  margin-top: var(--espaco-1);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* 3 colunas ficam apertadas no tablet: usa grade de 3 com fotos menores */
+  .equipe.grade--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espaco-5);
+  }
+
+  .barbeiro__nome {
+    font-size: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Galeria
+   -------------------------------------------------------------------------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espaco-3);
+}
+
+.galeria__item {
+  display: grid;
+  gap: var(--espaco-2);
+}
+
+.galeria__mais {
+  margin-top: var(--espaco-6);
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* No tablet o 3º depoimento ocupa a linha inteira */
+  .depoimentos > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 768px) {
+  .galeria {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espaco-4);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Depoimentos
+   -------------------------------------------------------------------------- */
+.depoimento {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  height: 100%;
+  padding: var(--espaco-6) var(--espaco-5) var(--espaco-5);
+}
+
+/* Aspas decorativas */
+.depoimento::before {
+  content: "“";
+  position: absolute;
+  top: var(--espaco-2);
+  right: var(--espaco-5);
+  font-family: var(--fonte-titulo);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--cor-destaque);
+  opacity: 0.2;
+}
+
+.depoimento__estrelas {
+  color: var(--cor-destaque);
+  letter-spacing: 0.15em;
+}
+
+.depoimento__texto {
+  flex-grow: 1;
+  font-size: 1.0625rem;
+}
+
+.depoimento__autor {
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Horários e localização
+   -------------------------------------------------------------------------- */
+.contato {
+  display: grid;
+  gap: var(--espaco-7);
+}
+
+.contato__mapa {
+  display: grid;
+  gap: var(--espaco-4);
+  justify-items: start;
+}
+
+.mapa {
+  width: 100%;
+  border: 1px solid var(--cor-borda);
+}
+
+.mapa iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Deixa o mapa escuro, combinando com o site */
+  filter: grayscale(0.3) invert(0.9) hue-rotate(180deg) brightness(0.95);
+}
+
+.contato__info {
+  display: grid;
+  gap: var(--espaco-6);
+}
+
+.contato__bloco h3 {
+  margin-bottom: var(--espaco-3);
+  color: var(--cor-destaque);
+}
+
+.contato__bloco address {
+  font-style: normal;
+}
+
+.contato__bloco address + p,
+.contato__bloco p + p {
+  margin-top: var(--espaco-2);
+}
+
+/* Tabela de horários */
+.horarios {
+  width: 100%;
+  max-width: 24rem;
+  border-collapse: collapse;
+}
+
+.horarios th,
+.horarios td {
+  padding: var(--espaco-2) 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.horarios th {
+  font-weight: 400;
+  text-align: left;
+}
+
+.horarios td {
+  text-align: right;
+  color: var(--cor-texto-suave);
+}
+
+/* Dia de hoje (classe adicionada pelo JS) */
+.horarios tr.hoje th,
+.horarios tr.hoje td {
+  color: var(--cor-destaque);
+  font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+  .contato {
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--espaco-8);
+    align-items: start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Perguntas frequentes
+   -------------------------------------------------------------------------- */
+.container--estreito {
+  max-width: calc(48rem + 2 * var(--margem-lateral));
+}
+
+.faq {
+  border-top: 1px solid var(--cor-borda);
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.faq__item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espaco-4);
+  padding: var(--espaco-5) 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--transicao);
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__item summary:hover {
+  color: var(--cor-destaque);
+}
+
+/* Ícone "+" que vira "×" ao abrir */
+.faq__item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  color: var(--cor-destaque);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform var(--transicao);
+}
+
+.faq__item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq__item p {
+  padding-bottom: var(--espaco-5);
+  color: var(--cor-texto-suave);
+  max-width: 40rem;
+}
+
+/* --------------------------------------------------------------------------
+   Chamada final
+   -------------------------------------------------------------------------- */
+.chamada {
+  background-image: radial-gradient(ellipse 60% 80% at 50% 100%, rgb(201 162 95 / 0.12), transparent 70%);
+}
+
+.chamada__interno {
+  display: grid;
+  justify-items: center;
+  gap: var(--espaco-4);
+  text-align: center;
+}
+
+.chamada__interno .botao {
+  margin-top: var(--espaco-3);
+}
