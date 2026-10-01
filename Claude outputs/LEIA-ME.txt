@@ -18,9 +18,7 @@ galeria-3.jpg         Galeria: Corte social           800 x 800 px       quadrad
 galeria-4.jpg         Galeria: Platinado              800 x 800 px       quadrada (1:1)
 galeria-5.jpg         Galeria: Corte infantil         800 x 800 px       quadrada (1:1)
 galeria-6.jpg         Galeria: Pompadour              800 x 800 px       quadrada (1:1)
-favicon.ico, favicon-32.png, favicon-192.png, apple-touch-icon.png
-                      Ícone da aba / atalho do celular (gerados a partir do logo)
-logo-original.png     Cópia do logo original, sem ajuste de cor (backup; pode apagar)
+scissors.png          Ícone da aba do navegador       32 x 32 ou 64 x 64 quadrada
 
 Dicas
 - Logo: use PNG com fundo transparente e cores claras (o cabeçalho é

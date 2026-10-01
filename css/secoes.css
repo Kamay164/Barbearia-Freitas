@@ -156,6 +156,13 @@
   white-space: nowrap;
 }
 
+/* "a partir de" menor, para o preço não empurrar o nome */
+.servico__preco small {
+  font-family: var(--fonte-texto);
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+}
+
 .servico__descricao {
   grid-area: desc;
   margin-top: var(--espaco-2);
