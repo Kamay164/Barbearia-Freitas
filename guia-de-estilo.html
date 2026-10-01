@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Guia de estilo · Barbearia Freitas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    /* Estilos exclusivos desta página de conferência */
+    .amostras { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: var(--espaco-4); }
+    .amostra { border: 1px solid var(--cor-borda); border-radius: var(--raio); overflow: hidden; font-size: var(--tamanho-pequeno); }
+    .amostra__cor { height: 4.5rem; }
+    .amostra__info { padding: var(--espaco-3); background: var(--cor-superficie); }
+    .amostra__info code { color: var(--cor-texto-suave); }
+    .linha-botoes { display: flex; flex-wrap: wrap; gap: var(--espaco-4); }
+    .bloco + .bloco { margin-top: var(--espaco-8); }
+    .rotulo { margin-bottom: var(--espaco-4); color: var(--cor-texto-suave); font-size: var(--tamanho-pequeno); text-transform: uppercase; letter-spacing: 0.1em; }
+  </style>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <main id="conteudo">
+    <section class="secao">
+      <div class="container">
+        <div class="cabecalho-secao">
+          <span class="ornamento" aria-hidden="true"></span>
+          <span class="selo">Desde 2014 · Belo Horizonte, MG</span>
+          <h1>Guia de estilo</h1>
+          <p class="texto-lead">Página de conferência da etapa 3: cores, tipografia, espaçamento e componentes base. Não faz parte do site final.</p>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">Cores</p>
+          <div class="amostras">
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-fundo)"></div><div class="amostra__info">Fundo<br><code>#141210</code></div></div>
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-superficie)"></div><div class="amostra__info">Superfície<br><code>#1E1B18</code></div></div>
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-borda)"></div><div class="amostra__info">Borda<br><code>#2E2A25</code></div></div>
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-texto)"></div><div class="amostra__info">Texto<br><code>#F2EDE4</code></div></div>
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-texto-suave)"></div><div class="amostra__info">Texto suave<br><code>#B8AFA3</code></div></div>
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-destaque)"></div><div class="amostra__info">Destaque<br><code>#C9A25F</code></div></div>
+            <div class="amostra"><div class="amostra__cor" style="background:var(--cor-whatsapp)"></div><div class="amostra__info">WhatsApp<br><code>#25D366</code></div></div>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">Tipografia</p>
+          <h1>Tradição no corte</h1>
+          <h2>Serviços e preços</h2>
+          <h3>Corte + Barba</h3>
+          <p class="texto-lead">Corte, barba e acabamento feitos com calma, por barbeiros que conhecem o seu estilo.</p>
+          <p>Texto corrido em Manrope. A Freitas nasceu em 2014, quando o Rafael transformou uma cadeira alugada num espaço próprio na Savassi. <a href="#">Um link de exemplo</a>.</p>
+          <p class="texto-suave texto-pequeno">Texto pequeno e suave para legendas e observações.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao--alternada">
+      <div class="container">
+        <div class="cabecalho-secao cabecalho-secao--centro">
+          <span class="ornamento" aria-hidden="true"></span>
+          <h2>Seção alternada, título centralizado</h2>
+          <p class="texto-lead">O losango do ornamento “recorta” a linha usando a cor de fundo da seção.</p>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">Botões</p>
+          <div class="linha-botoes">
+            <a class="botao botao--primario" href="#">Agendar pelo WhatsApp</a>
+            <a class="botao botao--secundario" href="#">Ver serviços e preços</a>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">Cards em grade (1 → 2 → 3 colunas)</p>
+          <div class="grade grade--3">
+            <article class="card">
+              <span class="etiqueta">Mais pedido</span>
+              <h3 style="margin-top:var(--espaco-3)">Corte + Barba</h3>
+              <p class="texto-suave">O combo completo, com desconto.</p>
+            </article>
+            <article class="card">
+              <h3>Corte</h3>
+              <p class="texto-suave">Máquina e tesoura, do clássico ao degradê.</p>
+            </article>
+            <article class="card">
+              <h3>Barba</h3>
+              <p class="texto-suave">Toalha quente, navalha e balm hidratante.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="bloco">
+          <p class="rotulo">Reserva de imagem (4:5 e 4:3)</p>
+          <div class="grade grade--3">
+            <div class="imagem-reserva" style="--proporcao: 4 / 5"></div>
+            <div class="imagem-reserva"></div>
+            <div class="imagem-reserva"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
